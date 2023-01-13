@@ -1,0 +1,33 @@
+{
+  "name": "festivalmusica",
+  "version": "1.0.0",
+  "description": "Proyecto con Gulp, SASS y HTML",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch src/scss:build/css",
+    "task": "gulp task",
+    "dev": "gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipproyectosysoluciones/festival_musica.git"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp",
+    "HTML",
+    "JavaScript"
+  ],
+  "author": "Bladimir Parra - IP Proyectos y Soluciones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ipproyectosysoluciones/festival_musica/issues"
+  },
+  "homepage": "https://github.com/ipproyectosysoluciones/festival_musica#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.57.1"
+  }
+}
