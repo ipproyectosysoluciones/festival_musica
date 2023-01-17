@@ -4,9 +4,9 @@ const { src, dest, watch, parallel } = require( 'gulp' );
 const sass = require( 'gulp-sass' )( require( 'sass' ) );
 const plumber = require( 'gulp-plumber' );
 
-/* Imagenes */
-// const cache = require( 'gulp-cache' );
-// const imagemin = require( 'gulp-imagemin' );
+/* Imágenes */
+const cache = require( 'gulp-cache' );
+const imagemin = require( 'gulp-imagemin' );
 const webp = require( 'gulp-webp' );
 // const avif = require( 'gulp-avif' );
 
@@ -26,24 +26,25 @@ function css (done) {
 
 /**
  * @name imagenes
- * @description
+ * @description Aligerar imágenes
  * @param {*} done
  */
-// function imagenes ( done ) {
-//   const opciones = {
-//     optimizationLevel: 3,
-//   };
-//   src( 'src/img/**/*.{png,jpg}' )
-//     .pipe( cache( imagemin( opciones ) ) )
-//     .pipe( dest( 'build/img' ) );
+function imagenes ( done ) {
+  const opciones = {
+    optimizationLevel: 3,
+  };
+  src( 'src/img/**/*.{png,jpg}' )
+    // @ts-ignore
+    .pipe( cache( imagemin( opciones ) ) )
+    .pipe( dest( 'build/img' ) );
 
-//   done();
-// }
+  done();
+}
 
 /**
  * @name versionWebp
- * @description Cambiar las imagenes a formato webp
- * @param {*} done p
+ * @description Cambiar las imágenes a formato webp
+ * @param {*} done
  */
 function versionWebp ( done ) {
   const opciones = {
@@ -58,7 +59,7 @@ function versionWebp ( done ) {
 
 /**
  * @name versionAvif
- * @description
+ * @description Cambiar las imágenes a formato avif
  * @param {*} done 
  */
 // function versionAvif ( done ) {
@@ -84,7 +85,7 @@ function dev (done) {
 }
 
 exports.css = css;
-// exports.imagenes = imagenes;
+exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 // exports.versionAvif = versionAvif;
-exports.dev = parallel( versionWebp, dev );
+exports.dev = parallel( imagenes, versionWebp, dev );
