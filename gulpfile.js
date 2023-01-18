@@ -10,6 +10,9 @@ const imagemin = require( 'gulp-imagemin' );
 const webp = require( 'gulp-webp' );
 const avif = require( 'gulp-avif' );
 
+/* Javascript */
+// const terser = require( 'gulp-terser-js' );
+
 /**
  * @name css-loader
  * @description Identificar, compilar y almacenar todos los archivos SCSS
@@ -74,18 +77,32 @@ function versionAvif ( done ) {
 }
 
 /**
+ * @name javascript
+ * @description 
+ * @param {*} done 
+ */
+function javascript( done ) {
+  src( 'src/js/**/*.js' )
+    .pipe( dest( 'build/js' ) );
+
+  done();
+}
+
+/**
  * @name dev-watch
  * @description Se encarga de estar pendiente de los cambios de las funciones
  * @param {*} done
  */
 function dev (done) {
   watch( 'src/scss/**/*.scss', css );
+  watch( 'src/js/**/*.js', javascript );
 
   done();
 }
 
 exports.css = css;
+exports.javascript = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.dev = parallel( imagenes, versionWebp, versionAvif, dev );
+exports.dev = parallel( imagenes, versionWebp, versionAvif, javascript, dev );
