@@ -5,3 +5,7 @@
 package-lock.json
 /package-lock.json
 /src/*.*
+
+/src/scss
+/src/scss/base
+/src/scss/app.scss
